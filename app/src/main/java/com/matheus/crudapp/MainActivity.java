@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         image = findViewById(R.id.imageView);
         logo = findViewById(R.id.Logo);
 
-        image.setAnimation(topAnim);
+      /*  image.setAnimation(topAnim);*//**/
         logo.setAnimation(bottomAnim);
 
         createdatabase();

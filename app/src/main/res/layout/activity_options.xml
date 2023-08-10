@@ -12,11 +12,11 @@
         android:id="@+id/selecionetextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="36dp"
         android:fontFamily="@font/anton"
         android:text="Selecione o que deseja fazer"
-        android:textSize="24sp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +29,7 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/anton"
         android:text="Adicionar Despesa ou Lucro"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selecionetextview" />
 
@@ -42,7 +42,7 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/anton"
         android:text="Remover Despesa ou Lucro"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Add" />
 
@@ -55,7 +55,7 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/anton"
         android:text="Alterar Despesa ou lucro"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/remove" />
 
@@ -68,7 +68,7 @@
         android:layout_marginEnd="44dp"
         android:fontFamily="@font/anton"
         android:text="Listar Tudo"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/update" />
 </androidx.constraintlayout.widget.ConstraintLayout>

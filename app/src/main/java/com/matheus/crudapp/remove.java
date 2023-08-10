@@ -7,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -14,6 +16,7 @@ public class remove extends AppCompatActivity {
     EditText removefield;
     Button removebt,back;
     SQLiteDatabase db;
+    Animation topanim,bottomanim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,13 @@ public class remove extends AppCompatActivity {
         removebt = findViewById(R.id.removebt);
         back = findViewById(R.id.back);
 
+
+        topanim = AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        bottomanim = AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
+        removefield.setAnimation(topanim);
+        removebt.setAnimation(bottomanim);
+        back.setAnimation(bottomanim);
         removebt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

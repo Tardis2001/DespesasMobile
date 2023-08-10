@@ -74,14 +74,17 @@ public class Adicionar extends AppCompatActivity {
             public void onClick(View view) {
                 if(lucro.isChecked()){
                     Toast.makeText(Adicionar.this,"Lucro adicionado com sucesso!",Toast.LENGTH_LONG).show();
+
+                    addToDb();
                 }
                 else if(despesa.isChecked()) {
                     Toast.makeText(Adicionar.this,"Despesa adicionado com sucesso!",Toast.LENGTH_LONG).show();
 
+                    addToDb();
+
                 }else{
                     Toast.makeText(Adicionar.this,"Selecione se é uma despesa ou lucro!",Toast.LENGTH_LONG).show();
                 }
-                addToDb();
             }
         });
     }

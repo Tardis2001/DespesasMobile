@@ -2,7 +2,9 @@ package com.matheus.crudapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +18,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class updateActivity extends AppCompatActivity {
     private SQLiteDatabase db;
@@ -27,7 +31,7 @@ public class updateActivity extends AppCompatActivity {
     TextView labelview;
     DatePicker date;
     Calendar calendar;
-    EditText name,amount,description;
+    EditText name,amount,description,id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +50,9 @@ public class updateActivity extends AppCompatActivity {
         labelview = findViewById(R.id.labeladd);
         calendarView = findViewById(R.id.calendarView);
         calendar = Calendar.getInstance();
+        id = findViewById(R.id.id);
 
-
+        id.setAnimation(leftanim);
         labelview.setAnimation(topanim);
         name.setAnimation(rightanim);
         amount.setAnimation(leftanim);
@@ -66,19 +71,47 @@ public class updateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(lucro.isChecked()){
-                    Toast.makeText(updateActivity.this,"Lucro adicionado com sucesso!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(updateActivity.this,"Lucro Alterado com sucesso!",Toast.LENGTH_LONG).show();
+                    updateToDb();
                 }
                 else if(despesa.isChecked()) {
-                    Toast.makeText(updateActivity.this,"Despesa adicionado com sucesso!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(updateActivity.this,"Despesa Alterado com sucesso!",Toast.LENGTH_LONG).show();
 
+                    updateToDb();
                 }else{
                     Toast.makeText(updateActivity.this,"Selecione se é uma despesa ou lucro!",Toast.LENGTH_LONG).show();
                 }
-                updateToDb();
             }
         });
     }
 
     private void updateToDb() {
+
+        double numdespesa = 0;
+        try {
+
+            db = openOrCreateDatabase("Expensedb", MODE_PRIVATE, null);
+            ContentValues data = new ContentValues();
+            data.put("name", String.valueOf(name.getText()));
+            data.put("description", String.valueOf(description.getText()));
+            if (despesa.isChecked())
+                numdespesa = -1 * Double.valueOf(String.valueOf(amount.getText()));
+            else if (lucro.isChecked())
+                numdespesa = Double.valueOf(String.valueOf(amount.getText()));
+
+            data.put("amount", String.valueOf(numdespesa));
+            data.put("date", String.valueOf(getDate()));
+            db.update("expense",data,"id = ?",new String[]{String.valueOf(id.getText())});
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public String getDate(){
+        long date = calendarView.getDate();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        calendar.setTimeInMillis(date);
+        String selected_date = simpleDateFormat.format(calendar.getTime());
+        return selected_date;
     }
 }

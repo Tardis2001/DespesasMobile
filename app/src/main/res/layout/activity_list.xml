@@ -61,7 +61,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="4dp"
         android:text="Diferença Total:"
-        android:textSize="34sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/total"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +72,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="4dp"
         android:text="0.0"
-        android:textSize="34sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textviewdespesa"
         app:layout_constraintTop_toTopOf="parent" />
